@@ -8,6 +8,7 @@ class Organism {
         int size;
         int gp;     //Growth Percentage
         bool reproduction;
+        bool sex;
     public:
         
 }
