@@ -6,3 +6,4 @@
 #include <cstdlib>
 using namespace std;
 
+srand (time(NULL));
