@@ -16,8 +16,14 @@ int RandomInteger(int low, int high) {
       d = (double)rand()/(1.0 + (double)RAND_MAX);
       k = (int) (d*(high - low + 1));
       return (low + k);
-      // srand((int)time(0));
-      // cout << RandomInteger(1,8) << endl;
+      // cout << RandomInteger(1,8) << endl;    <--- This is what you need to generate --->
+}
+
+// This is the main function for time operations
+void wait (int seconds) {
+    clock_t endwait;
+    endwait = clock () + seconds * CLOCKS_PER_SEC;
+    while (clock() < endwait) {/* Nothing to see here */}
 }
 
 // Declaration of the classes begins here =========================================
@@ -30,7 +36,7 @@ class Organism {
         bool sex;       // 0 for female, 1 for male
         void interaction() {
             // This is the main interaction fucntion for stuff like eating and reproduction
-            if ( // The master class is the same -> reproduction, else eating if possible
+            if ( /* The master class is the same -> reproduction, else eating if possible*/ ) {}
         }
     public:
         void move() {
