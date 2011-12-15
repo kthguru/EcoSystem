@@ -16,7 +16,7 @@ int RandomInteger(int low, int high) {
       d = (double)rand()/(1.0 + (double)RAND_MAX);
       k = (int) (d*(high - low + 1));
       return (low + k);
-      // cout << RandomInteger(1,8) << endl;    <--- This is what you need to generate --->
+      // cout << RandomInteger(1,8) << endl;    <--- This is what you need to generate
 }
 
 // This is the main function for time operations
@@ -77,8 +77,9 @@ int main() {
                 cout << "System already running" << endl;
             else {
                 // <--- Generating system here --->
-                x=RandomInteger(9,13);
-                y=RandomInteger(9,13);
+                clock_t run_clock = clock();
+                int x=RandomInteger(9,13);
+                int y=RandomInteger(9,13);
                 Organism map[x][y];
                 cout << "Generating the map" << endl;
                 cout << "The map has " << x << " length and" << y << " width" << endl;
@@ -87,7 +88,8 @@ int main() {
                 for (int i=0; i=N/2; i++) {
                     int place_x = RandomInteger(1,N);
                     int place_y = RandomInteger(1,N);
-                    map [place_x][place_y] = Phytoplankton o1
+                    map [place_x][place_y] = Phytoplankton o1;
+                    // Create more organisms here (problably with another function or class)
                 }
             }
         }
@@ -95,7 +97,8 @@ int main() {
             if (running=false)
                 cout << "System not running" << endl;
             else {
-                //Pause system here:
+                run_clock = 0;
+                cout << "System paused" << endl;
             }
         }
         else if (choice == 3) {
