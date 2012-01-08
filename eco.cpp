@@ -10,14 +10,12 @@
 using namespace std;
 
 // This is a system function to generate random numbers where I need.
-int RandomInteger(int low, int high) {
-      int k;
-      double d;
-      d = (double)rand()/(1.0 + (double)RAND_MAX);
-      k = (int) (d*(high - low + 1));
-      return (low + k);
-      // cout << RandomInteger(1,8) << endl;    <--- This is what you need to generate
-}
+int RandomInteger(int low, int high) {  
+      int k;  
+      int dif=high-low+1; 
+      k = low + rand() % dif; 
+      return k;  
+} 
 
 // This is the main function for time operations
 void wait (int seconds) {
