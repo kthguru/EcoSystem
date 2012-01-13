@@ -31,18 +31,16 @@ class Organism {
         int size;
         int growth;     // Growth Percentage
         int food;       // Ammount of food they need
-        bool sex;       // 0 for female, 1 for male
+    public:
         void interaction() {
             // This is the main interaction fucntion for stuff like eating and reproduction
             if ( /* The organism is the same -> reproduction, else eating if possible*/ ) {}
         }
-    public:
         void move() {
             int movement = RandomInteger(1,8);
         }
         Organism() {      // Constructor of the class
-           age = RandomInteger(1,50);
-           sex = RandomInteger(0,1);
+           age = RandomInteger(1,50); //Those are in the type of ** steps ** step counter
         }
 };
 
@@ -60,6 +58,78 @@ class Phytoplankton: public Plankton {
     private:
     public:
 };
+
+/* <--- ^-Plankton ---- Non-Plankton-v ---> */
+
+class NPlankton: public Organism {
+    private:
+    public:
+}
+
+class Invertebrate: public NPlankton {
+    private:
+    public:
+}
+
+class Vertebrate: public NPlankton {
+    private:
+    public:
+}
+// One Step Deeper --------------------- 
+class Mollusca: public Invertebrate {
+    private:
+    public:
+}
+
+class Arthropoda: public Invertebrate {
+    private:
+    public:
+}
+
+class Squid: public Mollusca {
+    private:
+    public:
+}
+
+class Octopus: public Mollusca {
+    private:
+    public:
+}
+
+class Mylittus: public Mollusca {
+    private:
+    public:
+}
+
+class Crab: public Arthropoda {
+    private:
+    public:
+}
+
+class Shrimp: public Arthropoda {
+    private:
+    public:
+}
+// Higher Fish -----------------------
+class Chordata: public Vertebrate {
+    private:
+    public:
+}
+
+class Sprattus: public Chordata {
+    private:
+    public:
+}
+
+class Dolpin: public Chordata {
+    private:
+    public:
+}
+
+class Shark: public Chordata {
+    private:
+    public:
+}
 /* ========================= Declaration of the classes ends here =========================== */
 
 int main() {
@@ -71,21 +141,31 @@ int main() {
     int y=RandomInteger(15,20);
     Organism map[x][y];
     cout << "The map has " << x << " length and" << y << " width" << endl;
+    // Counters:
+    int step_counter = 1;
+    int org_counter = 0;
     int N = x*y;
     cout << "Placing organisms into the map" << endl;
-    for (int i=0; i=(N/2)+2; i++) {
-        int place_x = RandomInteger(1,N);
-        int place_y = RandomInteger(1,N);
-        map[place_x][place_y] = Phytoplankton o1;
-        /* Create more organisms here (problably with another function or class) -------- */
+    for (int i=0; i>=(N/2)+2; i++) {
+        int place_x = RandomInteger(0,N);
+        int place_y = RandomInteger(0,N);
+        map[place_x][place_y] = Phytoplankton p1;
+        /* Create more organisms here randomly (problably with another function or class) -------- */
+        org_counter++;
     }
+    // Placing a shark and a dolphin.
+    int place_x = RandomInteger(0,N);
+    int place_y = RandomInteger(0,N);
+    map[place_x][place_y] = Shark s;
+    place_x = RandomInteger(0,N);
+    place_y = RandomInteger(0,N);
+    map[place_x][place_y] = Dolpin d;
+    org_counter+=2;
+    // Done. Starting menus and steps.
     char choice;
     cout << "Press C to make a step\nP to print the map\nR to restart\nI to get info\nAnything else to quit" << endl;
     cin >> choice;
-    double time_now; // Or clock_t type
-    int step_counter = 1;
     while (choice == 'C' || choice == 'c') {
-        time_now = clock();
         /* <-------Actions for one step --------> */
         cout << "Press C to make a step\nP to print the map\nR to restart\nI to get info\nAnything else to quit" << endl;
         getline (cin,choice);
@@ -111,6 +191,7 @@ int main() {
             }
             cout << endl; //Change the line in the stdout
         }
+        // Return to the main loop
     }
     else { cout << "System quitting after " << clock()/CLOCKS_PER_SEC << " seconds" << endl; }
 }

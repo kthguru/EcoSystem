@@ -1,0 +1,114 @@
+commit 618af021db8126ecc0767d33538a14552c25105c
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Fri Jan 13 02:19:58 2012 +0200
+
+    This is a whole new implementation. Basically, v2
+
+commit d8e31562dbc83ea387b5617e48e53dfbea30c225
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sun Jan 8 17:43:41 2012 +0200
+
+    changes in random and wait
+
+commit 469bc4a6cae4ae0db7ec9e1a89d82f986868c412
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Thu Dec 15 21:12:40 2011 +0200
+
+    More
+
+commit cfdd0861e2f9a3e04b644d754859814a0c805245
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Thu Dec 15 19:05:46 2011 +0200
+
+    Getting started with time stuff
+
+commit b5ae79707873c5798008b70617bb8117126a8999
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Thu Dec 15 15:46:44 2011 +0200
+
+    Creating the map and placing organisms
+
+commit 0b0ef151efd2d85e4046f0a005e21fef4e1e2c93
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Thu Dec 15 14:33:47 2011 +0200
+
+    Starting to create the main function
+
+commit e2d4325f46f51613e4b41f8c4dbe78fbd1dc389a
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Tue Dec 13 17:05:39 2011 +0200
+
+    Implementing more stuff in the classes
+
+commit 9f41872d2339a86c7dd696b614d4e3863540ee4f
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Tue Dec 13 15:14:50 2011 +0200
+
+    Starting with implementing the menu and some class
+
+commit e0e5544301e1792bd4c7ea0c2e59228f485cb780
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Tue Dec 13 14:39:38 2011 +0200
+
+    One file
+
+commit 13a8cf2ce4d9fe11aa2048aaabdfca1a4b1f492c
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Tue Dec 13 14:38:00 2011 +0200
+
+    Trying to put everything in one file for starters, maybe I'll split it up later
+
+commit 796ddaff90a132abcdf095659882bbdcce614bfa
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Thu Dec 1 16:00:51 2011 +0200
+
+    Header fever and random generator
+
+commit 15cb5f4384693cda42d91853d51c0a4729bc15a2
+Merge: 77a826c 45df13f
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Thu Dec 1 14:59:45 2011 +0200
+
+    Merge branch 'master' of github.com:g3orge/EcoSystem
+
+commit 77a826c24fe628a33d0f73f9499ff38087dfddf8
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Thu Dec 1 14:57:31 2011 +0200
+
+    First header file
+
+commit 45df13f2a04cbc4155c7d9682e73233ed98e40b7
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Thu Dec 1 13:48:24 2011 +0200
+
+    update Organisms
+
+commit 1877a98b1551b74c1166f4ae7d452e896ab8da62
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Wed Nov 30 16:48:39 2011 +0200
+
+    new gitignore
+
+commit 38d9870b8eb4a78a1acf5cd45890cc1ca4607381
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Wed Nov 30 16:41:41 2011 +0200
+
+    removing DS_Store
+
+commit 2603b180db165bd18fe5abf531e9bdb67dc6b059
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Wed Nov 30 16:36:06 2011 +0200
+
+    deleting useless stuff
+
+commit f3b716387a68a6db99e6944773372b94e145149e
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Wed Nov 30 16:34:15 2011 +0200
+
+    Original Commit
+
+commit 2d4fafc9623f0b98a02c5a3bd34412cdce053863
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Wed Nov 30 16:31:37 2011 +0200
+
+    Original Commit
