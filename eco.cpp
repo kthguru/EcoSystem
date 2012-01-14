@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstring>
 #include <ctime>
+#include <vector>
 #include <cstdlib>
 
 using namespace std;
@@ -31,12 +32,23 @@ class Organism {
         int growth;     // Growth Percentage is how much they grow of they get all the food:
         int food;       // Ammount of food they need
         char alias;     // This is the alias for the map
-        void interaction() {
+        void interaction(Organism* k, Organism* l) {
             // This is the main interaction fucntion for stuff like eating and reproduction
-            if ( /* The organism is the same -> reproduction, else eating if possible*/ ) {}
+            if ( k.alias==l.alias ) {
+                //Reproduction. Call the create function --> which_Organism
+            }
         }
-        void move() {
+        void move ( Organism* m ) {
             int movement = RandomInteger(1,8);
+            // <-- MOVE HERE --> */
+        }
+        
+};
+
+class NON: public Organism {  // A subclass for cells without organisms
+    public:
+        NON () {
+            char alias = 'O';
         }
 };
 
@@ -95,7 +107,7 @@ class Squid: public Mollusca {
 class Octopus: public Mollusca {
     public:
         Octopus() {
-            char alias = 'O';
+            char alias = 'T';
             int age = RandomInteger(1,5);
             int size = 3;
         }
@@ -160,33 +172,44 @@ class Shark: public Chordata {
 }
 /* ========================= Declaration of the classes ends here =========================== */
 
+Organism* which_Organism (int digit) {
+    if (digit==0) return NON* X;   // just a abstract pointer for non-animal cell
+    else if (digit==1) return NON* X;
+    else if (digit==2) return NON* X;
+    else if (digit==3) return  
+    else if (digit==4) return 
+    else if (digit==5) return 
+    else if (digit==6) return 
+}
+
 int main() {
     restart_label:      // This is the required label for the restart action
     srand((int)time(0));
-    cout << "The map will have " << x << " length and" << y << " width" << endl;
     int x=RandomInteger(15,20);
     int y=RandomInteger(15,20);
-    vector < vector<Organism*> > map(x, vector<Organism*>(y));       // Trying to create a container for all the objects - The map
-    cout << "Generating the system" << endl;
+    cout << "The map will have " << x << " length and" << y << " width" << endl;
+    cout << "Generating the system!" << endl;
     wait(1);
+    vector < vector<Organism*> > map;   // Trying to create a container for all the objects - The map
     // Counters:
     int step_counter = 1;
     int org_counter = 0;
-    int N = x*y;
     cout << "Placing organisms into the map..." << endl;
-    while ( org_counter <= (N/2)+30 ) {
-        // This is the creation loop for one organism
-        int place_x = RandomInteger(0,N);
-        int place_y = RandomInteger(0,N);
-        map[place_x][place_y] = Phytoplankton p1;
-        org_counter++;
+    for (int i = 0; i < x; i++) {
+        vector<Organism*> row;    // Create an empty row
+        for (int j = 0; j < y; j++) {
+                int digit = RandomInteger(0,20);    // Generate a random digit for the organism creation 
+                row.push_back( which_Organism (digit); ); // Add an element to the row
+        }
+        map.push_back(row);       // Add the row to the main vector
+    /* org_counter++; */
     }
     // Placing a shark and a dolphin.
-    int place_x = RandomInteger(0,N);
-    int place_y = RandomInteger(0,N);
+    int place_x = RandomInteger(0,map.size());
+    int place_y = RandomInteger(0,map.size());
     map[place_x][place_y] = Shark s;
-    place_x = RandomInteger(0,N);
-    place_y = RandomInteger(0,N);
+    place_x = RandomInteger(0,map.size());
+    place_y = RandomInteger(0,map.size());
     map[place_x][place_y] = Dolpin d;
     org_counter+=2;
     // Done. Starting menus and steps.
