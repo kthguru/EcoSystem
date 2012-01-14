@@ -1,3 +1,43 @@
+commit d50b68d8a912b0c533d18553bd0ba62c33ece605
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sat Jan 14 17:22:58 2012 +0200
+
+    Update README
+
+commit 8f632bc4e34be411a38a5392b59ec6d40b4e1120
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sat Jan 14 17:16:32 2012 +0200
+
+    new README
+
+commit 23bdf198f1a2c641a948fb1b3b37c5b21ecfdd2d
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sat Jan 14 17:14:06 2012 +0200
+
+    new README
+
+commit 53e8515d1f3bcb0bd2a8d24a9bf754a4d8efa0f2
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sat Jan 14 17:07:33 2012 +0200
+
+    Get started with more stuff inside the sub-classes
+    
+    I just created the age, the size and the alias for all the basic
+    organisms and improved the whole class system
+    TODO: Create the map - Probaly with vector and pointers
+
+commit b08419469199a43b85ddfca4850c5300712e0887
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Fri Jan 13 17:00:54 2012 +0200
+
+    Implementing things into main and creating classes
+    
+    I just created the prototypes of all the required classes,
+    and started implementing more things inside the main, the menus,
+    and the map generation code.
+    TODO: Add the REAL stuff into the classes
+          put some organisms into the map.
+
 commit 618af021db8126ecc0767d33538a14552c25105c
 Author: George Papanikolaou <g3orge.app@gmail.com>
 Date:   Fri Jan 13 02:19:58 2012 +0200

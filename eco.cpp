@@ -26,11 +26,11 @@ void wait(int seconds) {
 
 /* ========================= Declaration of the classes begins here =========================== */
 class Organism {
+    public:
         int size;       // This can be 0,1,2,3,4 - 0=DEAD
         int growth;     // Growth Percentage is how much they grow of they get all the food:
         int food;       // Ammount of food they need
         char alias;     // This is the alias for the map
-    public:
         void interaction() {
             // This is the main interaction fucntion for stuff like eating and reproduction
             if ( /* The organism is the same -> reproduction, else eating if possible*/ ) {}
@@ -161,14 +161,14 @@ class Shark: public Chordata {
 /* ========================= Declaration of the classes ends here =========================== */
 
 int main() {
-    restart_label:
+    restart_label:      // This is the required label for the restart action
     srand((int)time(0));
-    cout << "Generating the system" << endl;
-    wait(1);
+    cout << "The map will have " << x << " length and" << y << " width" << endl;
     int x=RandomInteger(15,20);
     int y=RandomInteger(15,20);
-    Organism* map[x][y];
-    cout << "The map has " << x << " length and" << y << " width" << endl;
+    vector < vector<Organism*> > map(x, vector<Organism*>(y));       // Trying to create a container for all the objects - The map
+    cout << "Generating the system" << endl;
+    wait(1);
     // Counters:
     int step_counter = 1;
     int org_counter = 0;
@@ -191,12 +191,13 @@ int main() {
     org_counter+=2;
     // Done. Starting menus and steps.
     char choice;
+    info_print_label:      // -------- This is the required label for the print and the info actions
     cout << "Press S to make a step\nP to print the map\nR to restart\nI to get info\nAnything else to quit" << endl;
     cin >> choice;
     while (choice == 'S' || choice == 's') {
-        /* <-------Actions for one step call the move function of all organisms--------> */
+        /* <-------Actions for one step. Call the move function of all organisms--------> */
         cout << "Press S to make a step\nP to print the map\nR to restart\nI to get info\nAnything else to quit" << endl;
-        getline (cin,choice);
+        cin >> choice;
         step_counter++;
     }
     if (choice == 'R' || choice == 'r')
@@ -213,14 +214,12 @@ int main() {
         int i,j;
         for (i=0; i=x; i++) {
             for (j=0; j=y; j++) {
-                if ( map[i][j] == /*SOME ORGANISM*/ ) {
-                    cout << "letter for the orgnism";
-                }
-                cout << "-";
+                cout << map[i][j].alias << "-";
             }
-            cout << endl; //Change the line in the stdout
+            cout << "\b" << endl;   //Change the line in the stdout
         }
-        // Return to the main loop
+        cout << "-------------------------------"
+        goto info_print_label;
     }
     else { cout << "System quitting after " << clock()/CLOCKS_PER_SEC << " seconds" << endl; }
     return 0;
