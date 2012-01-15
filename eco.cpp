@@ -32,17 +32,104 @@ class Organism {
         int growth;     // Growth Percentage is how much they grow of they get all the food:
         int food;       // Ammount of food they need
         char alias;     // This is the alias for the map
+        int where_x, where_y;  // Their place in the map
         void interaction(Organism* k, Organism* l) {
             // This is the main interaction fucntion for stuff like eating and reproduction
-            if ( *k.alias==*l.alias ) {
+            if ( *k.alias==*l.alias ) {   
+                if (*k.alias=='P') {
+                    Organism* L = create_Organism(5);                // Creating a "child" organism
+                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
+                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
+                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                }
+                if (*k.alias=='Z') {
+                    Organism* L = create_Organism(8);                // Creating a "child" organism
+                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
+                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
+                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                }
                 if (*k.alias=='K') {
-                    Organism* L = create_Organism(11);
-                    
+                    Organism* L = create_Organism(11);                // Creating a "child" organism
+                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
+                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
+                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                }       
+                if (*k.alias=='M') {
+                    Organism* L = create_Organism(13);                // Creating a "child" organism
+                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
+                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
+                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                }
+                if (*k.alias=='G') {
+                    Organism* L = create_Organism(15);                // Creating a "child" organism
+                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
+                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
+                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                }
+                if (*k.alias=='T') {
+                    Organism* L = create_Organism(18);                // Creating a "child" organism
+                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
+                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
+                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                }
+                if (*k.alias=='C') {
+                    Organism* L = create_Organism(19);                // Creating a "child" organism
+                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
+                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
+                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                }
+                if (*k.alias=='A') {
+                    Organism* L = create_Organism(20);                // Creating a "child" organism
+                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
+                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
+                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                }
+                if (*k.alias=='S') {
+                    Organism* L = create_Organism(22);                // Creating a "child" organism
+                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
+                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
+                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                }
+                if (*k.alias=='D') {
+                    Organism* L = create_Organism(21);                // Creating a "child" organism
+                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
+                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
+                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                }
+            }
+            else {
+                // The Eating Option:
+                if ( *k.size > *l.size ) {
+                    NON L;
+                    map[*l.where_x][*l.where_y] = *k;
+                    map[*k.where_x][*k.where_y] = &L;      // The *l organism is No More.
+                    // Add something for food here ----------------------
                 }
             }
         }
         void move ( Organism* m ) {
-            int movement = RandomInteger(1,8);
+            int movement;
+            if ( *m.where_x == 0 ) {
+                if (*m.where_y == 0 || *m.where_y == y) {
+                    movement = RandomInteger(4,6);
+                }
+                else {
+                    movement = RandomInteger(4,8);
+                }
+            }
+            else if (*m.where_y == 0 || *m.where_y == y) {
+                movement = RandomInteger(2,6);
+            }
+            else if ( *m.where_x == x ) {
+                if (*m.where_y == 0 || *m.where_y == y) {
+                    movement = RandomInteger(2,4);
+                }
+                else {
+                    movement = RandomInteger(1,4);
+                }
+            else {
+                movement = RandomInteger(1,8);
+            }
             // <-- MOVE HERE --> */
         }
         
@@ -198,6 +285,8 @@ Organism * create_Organism (int digit) {
     else if (digit==18) { Octopus X; return &X; } 
     else if (digit==19) { Crab X; return &X; } 
     else if (digit==20) { Sprattus X; return &X; } 
+    else if (digit==21) { Dolphin X; return &X; }    // These are for intercourse option. NO RANDOM.
+    else if (digit==22) { Shark X; return &X; } 
 }
 
 int main() {
@@ -218,6 +307,8 @@ int main() {
         for (int j = 0; j <= y; j++) {
                 int digit = RandomInteger(0,20);    // Generate a random digit for the organism creation 
                 Organism* Y = create_Organism (digit);
+                *Y.where_x=i;        // Add their place inside the placeholders
+                *Y.where_y=j;
                 row.push_back( *Y ); // Add an element to the row
                 if ( digit >= 4 ) org_counter++;   // Add one to the organis counter if an organism is been added
         }
@@ -246,13 +337,14 @@ int main() {
             org_counter++;
         }
     }
+    cout << "Map initialized successfully" << endl;
     // Done. Starting menus and steps.
     char choice;
     info_print_label:      // <-------- This is the required label for the print and the info actions
     cout << "Press S to make a step\nP to print the map\nA to add an organism\nR to restart\nI to get info\nAnything else to quit" << endl;
     cin >> choice;
     while (choice == 'S' || choice == 's') {
-        /* <-------Actions for one step. Call the move function of all organisms--------> */
+        /* <-------Actions for one step. Call the move function of all organisms--------> Make sure to look for food and size (0 and they die) */
         cout << "Press S to make a step\nP to print the map\nA to add an organism\nR to restart\nI to get info\nAnything else to quit" << endl;
         // Yes you need to hit 's' evrytime, for every step. I need something like conio.h for *nix to implement a continuous loop.
         cin >> choice;
@@ -272,18 +364,36 @@ int main() {
         cout << "Press the alias of the Organism you want to add" << endl;
         char adding;
         cin >> adding;
-        cout << "Press the number of the row you want the organism to be added" << endl;
+        cout << "Press the number of the row you want the Organism to be added" << endl;
         int arow;
         cin >> arow;
-        cout << "Now press the number of the collumn you want the organism to be added" << endl;
+        cout << "Now press the number of the collumn you want the Organism to be added" << endl;
         int acollumn;
         cin >> acollumn;
-        Organism* Q = create_Organism (adding);
+        int c;
+        if ( adding == 'P' || adding == 'p' ) c=4;         // Matching aliases with codes for the create_Organism function
+        else if ( adding == 'Z' || adding == 'z' ) c=8;
+        else if ( adding == 'K' || adding == 'k' ) c=11;
+        else if ( adding == 'M' || adding == 'm' ) c=13;
+        else if ( adding == 'G' || adding == 'g' ) c=15;
+        else if ( adding == 'T' || adding == 't' ) c=18;
+        else if ( adding == 'C' || adding == 'c' ) c=19;
+        else if ( adding == 'A' || adding == 'a' ) c=20;
+        else if ( adding == 'D' || adding == 'd' ) c=21;
+        else if ( adding == 'S' || adding == 's' ) c=22;
+        else { 
+            cout << "There is no " << adding << " alias in the system" << endl;
+            goto info_print_label;
+        }
+        Organism* Q = create_Organism (c);
         map[arow][acollumn] = *Q;
+        *Q.where_x = arow;
+        *Q.where_y = acollumn;
         cout << "Success" << endl;
         goto info_print_label;
     }
     else if (choice == 'P' || choice == 'p') {
+        // Print option: (for the console)
         int i,j;
         for (i=0; i=x; i++) {
             for (j=0; j=y; j++) {
