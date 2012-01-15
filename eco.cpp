@@ -29,12 +29,13 @@ void wait(int seconds) {
 class Organism {
     public:
         int size;       // This can be 0,1,2,3,4 - 0=DEAD
-        int growth;     // Growth Percentage is how much they grow of they get all the food:
-        int food;       // Ammount of food they need. This is 0,1,2 and when 0 their size is coming down 1.
+        int age;        // Number of steps they take
+        int food;       // Ammount of food they need. This is 0,1,2 and when 0 their size is reducing.
         char alias;     // This is the alias for the map
+        int org_eaten;  // The counter for the organisms eaten by this one
         int where_x, where_y;  // Their place in the map
         void interaction(Organism* l) {
-            // This is the main interaction fucntion for stuff like eating and reproduction
+            // Plankton interaction
             if (  alias==*l.alias ) {   
                 if ( alias=='P') {
                     Organism* L = create_Organism(5);                // Creating a "child" organism
@@ -42,76 +43,11 @@ class Organism {
                         map[  where_x-1 ][  where_y-1 ] = *L;
                     map[  where_x+1 ][  where_y+1 ] = *L;
                 }
-                if ( alias=='Z') {
+                else if ( alias=='Z') {
                     Organism* L = create_Organism(8);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
                         map[  where_x-1 ][  where_y-1 ] = *L;
                     map[  where_x+1 ][  where_y+1 ] = *L;
-                }
-                if ( alias=='K') {
-                    Organism* L = create_Organism(11);                // Creating a "child" organism
-                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = *L;
-                    map[  where_x+1 ][  where_y+1 ] = *L;
-                }       
-                if ( alias=='M') {
-                    Organism* L = create_Organism(13);                // Creating a "child" organism
-                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = *L;
-                    map[  where_x+1 ][  where_y+1 ] = *L;
-                }
-                if ( alias=='G') {
-                    Organism* L = create_Organism(15);                // Creating a "child" organism
-                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = *L;
-                    map[  where_x+1 ][  where_y+1 ] = *L;
-                }
-                if ( alias=='T') {
-                    Organism* L = create_Organism(18);                // Creating a "child" organism
-                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = *L;
-                    map[  where_x+1 ][  where_y+1 ] = *L;
-                }
-                if ( alias=='C') {
-                    Organism* L = create_Organism(19);                // Creating a "child" organism
-                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = *L;
-                    map[  where_x+1 ][  where_y+1 ] = *L;
-                }
-                if ( alias=='A') {
-                    Organism* L = create_Organism(20);                // Creating a "child" organism
-                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = *L;
-                    map[  where_x+1 ][  where_y+1 ] = *L;
-                }
-                if ( alias=='S') {
-                    Organism* L = create_Organism(22);                // Creating a "child" organism
-                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = *L;
-                    map[  where_x+1 ][  where_y+1 ] = *L;
-                }
-                if ( alias=='D') {
-                    Organism* L = create_Organism(21);                // Creating a "child" organism
-                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = *L;
-                    map[  where_x+1 ][  where_y+1 ] = *L;
-                }
-            }
-            else {
-                // The Eating Option:
-                if (  size > *l.size ) {
-                    map[*l.where_x][*l.where_y] = this  // This Object
-                    map[ where_x][ where_y] = &E;      // The *l organism is No More.
-                    // Food code:
-                    food = 3;
-                    size++;
-                }
-                else {
-                    map[ where_x][ where_y] = *l;
-                    map[*l.where_x][*l.where_y] = &E;      // The  organism is No More.
-                    // The same food code reversed for the l
-                    *l.food = 3;
-                    *l.size++;
                 }
             }
         }
@@ -149,6 +85,7 @@ class Organism {
             else if (movement == 7) { interaction( map[where_x+1][where_y-1]); }
             else { interaction( map[where_x][where_y-1]); }
             // NO FOOD OR SIZE CHECK. The Plankton cannot die from age/size so it can provide food to the supreme organisms.
+            age++;
         }
 };
 
@@ -183,7 +120,6 @@ class Phytoplankton: public Plankton {
 /* <--- ^-Plankton ---- Non-Plankton-v ---> */
 
 class NPlankton: public Organism {
-        int age;
     public:
         void move () {                  // The move function for NPlankton organisms with the ability to die.
             int movement;
@@ -224,6 +160,90 @@ class NPlankton: public Organism {
             // Size check:
             if (size==0) {
                 map[where_x][where_y] = &E;
+            }
+            age++;
+        }
+        void interaction(Organism* l) {
+            // This is the main interaction function for stuff like eating and reproduction
+            if (  alias==*l.alias ) {   
+                if ( alias=='P') {
+                    Organism* L = create_Organism(5);                // Creating a "child" organism
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
+                }
+                else if ( alias=='Z') {
+                    Organism* L = create_Organism(8);                // Creating a "child" organism
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
+                }
+                else if ( alias=='K') {
+                    Organism* L = create_Organism(11);                // Creating a "child" organism
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
+                }       
+                else if ( alias=='M') {
+                    Organism* L = create_Organism(13);                // Creating a "child" organism
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
+                }
+                else if ( alias=='G') {
+                    Organism* L = create_Organism(15);                // Creating a "child" organism
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
+                }
+                else if ( alias=='T') {
+                    Organism* L = create_Organism(18);                // Creating a "child" organism
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
+                }
+                else if ( alias=='C') {
+                    Organism* L = create_Organism(19);                // Creating a "child" organism
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
+                }
+                else if ( alias=='A') {
+                    Organism* L = create_Organism(20);                // Creating a "child" organism
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
+                }
+                else if ( alias=='S') {
+                    Organism* L = create_Organism(22);                // Creating a "child" organism
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
+                }
+                else if ( alias=='D') {
+                    Organism* L = create_Organism(21);                // Creating a "child" organism
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
+                }
+            }
+            else {
+                // The Eating Option:
+                if (  size > *l.size ) {
+                    map[*l.where_x][*l.where_y] = this  // This Object
+                    map[ where_x][ where_y] = &E;      // The *l organism is No More.
+                    // Food code:
+                    food = 3;
+                    size++;
+                    org_eaten++;
+                }
+                else {
+                    map[ where_x][ where_y] = *l;
+                    map[*l.where_x][*l.where_y] = &E;      // The  organism is No More.
+                    *l.food = 3;
+                    *l.size++;
+                    *l.org_eaten++;
+                }
             }
         }
 }
@@ -401,7 +421,7 @@ int main() {
     // Done. Starting menus and steps.
     char choice;
     info_print_label:      // <-------- This is the required label for the print and the info actions
-    cout << "Press S to make a step\nP to print the map\nA to add an organism or Infection\nR to restart\nI to get info\nAnything else to quit" << endl;
+    cout << "Press S to make a step\nP to print the map\nA to add an Organism or Infection\nR to restart\nI to get info\nAnything else to quit" << endl;
     cin >> choice;
     while (choice == 'S' || choice == 's') {
         for (int i=0;i=x;i++) {
@@ -437,6 +457,7 @@ int main() {
             << "The spesific organisms are:\n Phytoplankton(P) - " << P_cn <<"\n Zooplankton(Z) - " << Z_cn << "\n Squid(K) - "<< K_cn
             << "\n Mylittus(M) - "<< M_cn << "\n Shrimp(G) - " << G_cn << "\n Octopus(T) - "<< T_cn
             <<"\n Crab(C) - " << C_cn << "\n Sprattus(A) - " << A_cn << "\n Dolpin(D) - " << D_cn << "\n Shark(S) - " << S_cn << endl;
+        cout << "System running for " << clock()/CLOCKS_PER_SEC << " seconds" << endl;
         goto info_print_label;
     }
     else if (choice == 'A' || choice == 'a') {
