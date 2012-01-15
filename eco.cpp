@@ -139,6 +139,7 @@ class NON: public Organism {  // A subclass for cells without organisms
     public:
         NON () {
             char alias = 'O';
+            int size = 0;
         }
 };
 
@@ -176,7 +177,7 @@ class Invertebrate: public NPlankton {
 class Vertebrate: public NPlankton {
     public:
 }
-// One Stsp Deeper --------------------- 
+// One Step Deeper --------------------- 
 class Mollusca: public Invertebrate {
     public:
 }
@@ -285,15 +286,15 @@ Organism * create_Organism (int digit) {
     else if (digit==18) { Octopus X; return &X; } 
     else if (digit==19) { Crab X; return &X; } 
     else if (digit==20) { Sprattus X; return &X; } 
-    else if (digit==21) { Dolphin X; return &X; }    // These are for intercourse option. NO RANDOM.
+    else if (digit==21) { Dolphin X; return &X; }    // These are for the reproduction and the add option. NO RANDOM.
     else if (digit==22) { Shark X; return &X; } 
 }
 
 int main() {
     restart_label:      // This is the required label for the restart action
     srand((int)time(0));
-    int x=RandomInteger(15,20);
-    int y=RandomInteger(15,20);
+    extern int x=RandomInteger(15,20);
+    extern int y=RandomInteger(15,20);
     cout << "The map will have " << x << " length and" << y << " width" << endl;
     cout << "Generating the system!" << endl;
     wait(1);
@@ -310,7 +311,7 @@ int main() {
                 *Y.where_x=i;        // Add their place inside the placeholders
                 *Y.where_y=j;
                 row.push_back( *Y ); // Add an element to the row
-                if ( digit >= 4 ) org_counter++;   // Add one to the organis counter if an organism is been added
+                if ( digit >= 4 ) org_counter++;   // Add one to the organism counter if an organism is been added
         }
         map.push_back(row);       // Add the row to the main vector
     }
@@ -341,11 +342,11 @@ int main() {
     // Done. Starting menus and steps.
     char choice;
     info_print_label:      // <-------- This is the required label for the print and the info actions
-    cout << "Press S to make a step\nP to print the map\nA to add an organism\nR to restart\nI to get info\nAnything else to quit" << endl;
+    cout << "Press S to make a step\nP to print the map\nA to add an organism or Infection\nR to restart\nI to get info\nAnything else to quit" << endl;
     cin >> choice;
     while (choice == 'S' || choice == 's') {
         /* <-------Actions for one step. Call the move function of all organisms--------> Make sure to look for food and size (0 and they die) */
-        cout << "Press S to make a step\nP to print the map\nA to add an organism\nR to restart\nI to get info\nAnything else to quit" << endl;
+        cout << "Press S to make a step\nP to print the map\nA to add an organism or Infection\nR to restart\nI to get info\nAnything else to quit" << endl;
         // Yes you need to hit 's' evrytime, for every step. I need something like conio.h for *nix to implement a continuous loop.
         cin >> choice;
         step_counter++;
@@ -353,50 +354,127 @@ int main() {
     if (choice == 'R' || choice == 'r')
         goto restart_label;
     else if (choice == 'I' || choice == 'i') {
-        // Give general and specific information
+        // Starting to count organisms:
+        int P_cn=0, Z_cn=0, K_cn=0, M_cn=0, G_cn=0, T_cn=0, C_cn=0, A_cn=0, D_cn=0, S_cn=0;    // Counters
+        for (i=0; i=x; i++) {
+            for (j=0; j=y; j++) {
+                // Maybe there is THE NEED FOR >>*<<map[i][j] down below here
+                if ( map[i][j].alias == 'P' ) P_cn++;
+                else if ( map[i][j].alias == 'Z' ) Z_cn++;
+                else if ( map[i][j].alias == 'K' ) K_cn++;
+                else if ( map[i][j].alias == 'M' ) M_cn++;
+                else if ( map[i][j].alias == 'G' ) G_cn++;
+                else if ( map[i][j].alias == 'T' ) T_cn++;
+                else if ( map[i][j].alias == 'C' ) C_cn++;
+                else if ( map[i][j].alias == 'A' ) A_cn++;
+                else if ( map[i][j].alias == 'S' ) S_cn++;
+                else if ( map[i][j].alias == 'D' ) D_cn++;
+        }
         cout<< "There are " << org_counter << " total organisms in the map. "
-            << "The spesific organisms are:\n Phytoplankton - P\n Zooplankton - Z\n Squid - K\n Mylittus - M"
-            << "\n Shrimp - G\n Octopus - T\n Crab - C\n Sprattus - A\n Dolpin - D\n Shark - S" << endl;
+            << "The spesific organisms are:\n Phytoplankton(P) - " << P_cn <<"\n Zooplankton(Z) - " << Z_cn << "\n Squid(K) - "<< K_cn
+            << "\n Mylittus(M) - "<< M_cn << "\n Shrimp(G) - " << G_cn << "\n Octopus(T) - "<< T_cn
+            <<"\n Crab(C) - " << C_cn << "\n Sprattus(A) - " << A_cn << "\n Dolpin(D) - " << D_cn << "\n Shark(S) - " << S_cn << endl;
         goto info_print_label;
     }
     else if (choice == 'A' || choice == 'a') {
         // User organism creation loop:
-        cout << "Press the alias of the Organism you want to add" << endl;
+        cout << "Press the alias of the Organism you want to add or I to add an infection" << endl;
         char adding;
         cin >> adding;
-        cout << "Press the number of the row you want the Organism to be added" << endl;
-        int arow;
-        cin >> arow;
-        cout << "Now press the number of the collumn you want the Organism to be added" << endl;
-        int acollumn;
-        cin >> acollumn;
-        int c;
-        if ( adding == 'P' || adding == 'p' ) c=4;         // Matching aliases with codes for the create_Organism function
-        else if ( adding == 'Z' || adding == 'z' ) c=8;
-        else if ( adding == 'K' || adding == 'k' ) c=11;
-        else if ( adding == 'M' || adding == 'm' ) c=13;
-        else if ( adding == 'G' || adding == 'g' ) c=15;
-        else if ( adding == 'T' || adding == 't' ) c=18;
-        else if ( adding == 'C' || adding == 'c' ) c=19;
-        else if ( adding == 'A' || adding == 'a' ) c=20;
-        else if ( adding == 'D' || adding == 'd' ) c=21;
-        else if ( adding == 'S' || adding == 's' ) c=22;
-        else { 
-            cout << "There is no " << adding << " alias in the system" << endl;
+        if ( adding == 'I' || adding == 'i' ) {
+            // The Infection code here:
+            cout << "Press the number of the row you want the infection to appear." << endl;
+            int inf_x;
+            cin >> inf_x;
+            cout << "Press the number of the collumn." << endl;
+            int inf_y;
+            cin >> inf_y;
+            NON W;                  // Create an empty object
+            // Killing the near organisms:
+            if ( inf_x == 0 ) {
+                if (inf_y == 0 || inf_y == y) {
+                    map[inf_x][inf_y] = &W;     // Give the pointer to that empty object
+                    map[inf_x+1][inf_y] = &W;   // For the near cells ( without getting out of limits)
+                    map[inf_x][inf_y+1] = &W;
+                    map[inf_x+1][inf_y+1] = &W;
+                }
+                else {
+                    map[inf_x][inf_y] = &W;
+                    map[inf_x+1][inf_y] = &W;
+                    map[inf_x][inf_y+1] = &W;
+                    map[inf_x+1][inf_y+1] = &W;
+                    map[inf_x][inf_y-1] = &W;
+                    map[inf_x+1][inf_y-1] = &W;
+                }
+            }
+            else if (inf_y == 0 || inf_y == y) {
+                map[inf_x][inf_y] = &W;
+                map[inf_x+1][inf_y] = &W;
+                map[inf_x][inf_y+1] = &W;
+                map[inf_x+1][inf_y+1] = &W;
+                map[inf_x-1][inf_y+1] = &W;
+                map[inf_x-1][inf_y] = &W;
+            }
+            else if ( inf_x == x ) {
+                if (inf_y == 0 || inf_y == y) {
+                    map[inf_x][inf_y+1] = &W;
+                    map[inf_x-1][inf_y+1] = &W;
+                    map[inf_x-1][inf_y] = &W;
+                }
+                else {
+                    map[inf_x][inf_y+1] = &W;
+                    map[inf_x-1][inf_y+1] = &W;
+                    map[inf_x-1][inf_y] = &W;
+                    map[inf_x-1][inf_y-1] = &W;
+                }
+            else {
+                map[inf_x][inf_y] = &W;
+                map[inf_x+1][inf_y] = &W;
+                map[inf_x][inf_y+1] = &W;
+                map[inf_x-1][inf_y] = &W;
+                map[inf_x][inf_y-1] = &W;
+                map[inf_x+1][inf_y+1] = &W;
+                map[inf_x-1][inf_y-1] = &W;
+                map[inf_x+1][inf_y-1] = &W;
+                map[inf_x-1][inf_y+1] = &W;
+            }
+        }
+        else {
+            cout << "Press the number of the row you want the Organism to be added" << endl;
+            int arow;
+            cin >> arow;
+            cout << "Now press the number of the collumn you want the Organism to be added" << endl;
+            int acollumn;
+            cin >> acollumn;
+            int c;
+            if ( adding == 'P' || adding == 'p' ) c=4;         // Matching aliases with codes for the create_Organism function
+            else if ( adding == 'Z' || adding == 'z' ) c=8;
+            else if ( adding == 'K' || adding == 'k' ) c=11;
+            else if ( adding == 'M' || adding == 'm' ) c=13;
+            else if ( adding == 'G' || adding == 'g' ) c=15;
+            else if ( adding == 'T' || adding == 't' ) c=18;
+            else if ( adding == 'C' || adding == 'c' ) c=19;
+            else if ( adding == 'A' || adding == 'a' ) c=20;
+            else if ( adding == 'D' || adding == 'd' ) c=21;
+            else if ( adding == 'S' || adding == 's' ) c=22;
+            else { 
+                cout << "There is no " << adding << " alias in the system" << endl;
+                goto info_print_label;
+            }
+            Organism* Q = create_Organism (c);
+            map[arow][acollumn] = *Q;
+            *Q.where_x = arow;
+            *Q.where_y = acollumn;
+            cout << "Success" << endl;
             goto info_print_label;
         }
-        Organism* Q = create_Organism (c);
-        map[arow][acollumn] = *Q;
-        *Q.where_x = arow;
-        *Q.where_y = acollumn;
-        cout << "Success" << endl;
-        goto info_print_label;
     }
     else if (choice == 'P' || choice == 'p') {
         // Print option: (for the console)
         int i,j;
         for (i=0; i=x; i++) {
             for (j=0; j=y; j++) {
+                // Maybe there is THE NEED FOR >>*<<map[i][j] down below here
                 cout << map[i][j].alias << "-";
             }
             cout << "\b" << endl;   //Change the line in the stdout
