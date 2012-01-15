@@ -30,109 +30,126 @@ class Organism {
     public:
         int size;       // This can be 0,1,2,3,4 - 0=DEAD
         int growth;     // Growth Percentage is how much they grow of they get all the food:
-        int food;       // Ammount of food they need
+        int food;       // Ammount of food they need. This is 0,1,2 and when 0 their size is coming down 1.
         char alias;     // This is the alias for the map
         int where_x, where_y;  // Their place in the map
-        void interaction(Organism* k, Organism* l) {
+        void interaction(Organism* l) {
             // This is the main interaction fucntion for stuff like eating and reproduction
-            if ( *k.alias==*l.alias ) {   
-                if (*k.alias=='P') {
+            if (  alias==*l.alias ) {   
+                if ( alias=='P') {
                     Organism* L = create_Organism(5);                // Creating a "child" organism
-                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
-                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
-                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
-                if (*k.alias=='Z') {
+                if ( alias=='Z') {
                     Organism* L = create_Organism(8);                // Creating a "child" organism
-                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
-                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
-                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
-                if (*k.alias=='K') {
+                if ( alias=='K') {
                     Organism* L = create_Organism(11);                // Creating a "child" organism
-                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
-                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
-                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }       
-                if (*k.alias=='M') {
+                if ( alias=='M') {
                     Organism* L = create_Organism(13);                // Creating a "child" organism
-                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
-                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
-                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
-                if (*k.alias=='G') {
+                if ( alias=='G') {
                     Organism* L = create_Organism(15);                // Creating a "child" organism
-                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
-                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
-                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
-                if (*k.alias=='T') {
+                if ( alias=='T') {
                     Organism* L = create_Organism(18);                // Creating a "child" organism
-                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
-                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
-                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
-                if (*k.alias=='C') {
+                if ( alias=='C') {
                     Organism* L = create_Organism(19);                // Creating a "child" organism
-                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
-                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
-                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
-                if (*k.alias=='A') {
+                if ( alias=='A') {
                     Organism* L = create_Organism(20);                // Creating a "child" organism
-                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
-                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
-                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
-                if (*k.alias=='S') {
+                if ( alias=='S') {
                     Organism* L = create_Organism(22);                // Creating a "child" organism
-                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
-                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
-                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
-                if (*k.alias=='D') {
+                if ( alias=='D') {
                     Organism* L = create_Organism(21);                // Creating a "child" organism
-                    if ( *k.where_x == x; || *k.where_y == y )        // Adding the "child" in a near cell
-                        map[ *k.where_x-1 ][ *k.where_y-1 ] = *L;
-                    map[ *k.where_x+1 ][ *k.where_y+1 ] = *L;
+                    if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
             }
             else {
                 // The Eating Option:
-                if ( *k.size > *l.size ) {
-                    NON L;
-                    map[*l.where_x][*l.where_y] = *k;
-                    map[*k.where_x][*k.where_y] = &L;      // The *l organism is No More.
-                    // Add something for food here ----------------------
+                if (  size > *l.size ) {
+                    map[*l.where_x][*l.where_y] = this  // This Object
+                    map[ where_x][ where_y] = &E;      // The *l organism is No More.
+                    // Food code:
+                    food = 3;
+                    size++;
+                }
+                else {
+                    map[ where_x][ where_y] = *l;
+                    map[*l.where_x][*l.where_y] = &E;      // The  organism is No More.
+                    // The same food code reversed for the l
+                    *l.food = 3;
+                    *l.size++;
                 }
             }
         }
-        void move ( Organism* m ) {
+        void move () {
             int movement;
-            if ( *m.where_x == 0 ) {
-                if (*m.where_y == 0 || *m.where_y == y) {
+            if ( where_x == 0 ) {
+                if (where_y == 0 || where_y == y) {
                     movement = RandomInteger(4,6);
                 }
                 else {
                     movement = RandomInteger(4,8);
                 }
             }
-            else if (*m.where_y == 0 || *m.where_y == y) {
+            else if (where_y == 0 || where_y == y) {
                 movement = RandomInteger(2,6);
             }
-            else if ( *m.where_x == x ) {
-                if (*m.where_y == 0 || *m.where_y == y) {
+            else if ( where_x == x ) {
+                if (where_y == 0 || where_y == y) {
                     movement = RandomInteger(2,4);
                 }
                 else {
                     movement = RandomInteger(1,4);
                 }
+            }
             else {
                 movement = RandomInteger(1,8);
             }
-            // <-- MOVE HERE --> */
+            // The move now:
+            if (movement == 1) { interaction( map[where_x-1][where_y-1]); }
+            else if (movement == 2) { interaction( map[where_x-1][where_y]); }
+            else if (movement == 3) { interaction( map[where_x-1][where_y+1]); }
+            else if (movement == 4) { interaction( map[where_x][where_y+1]); }
+            else if (movement == 5) { interaction( map[where_x+1][where_y+1]); }
+            else if (movement == 6) { interaction( map[where_x+1][where_y]); }
+            else if (movement == 7) { interaction( map[where_x+1][where_y-1]); }
+            else { interaction( map[where_x][where_y-1]); }
+            // NO FOOD OR SIZE CHECK. The Plankton cannot die from age/size so it can provide food to the supreme organisms.
         }
-        
 };
 
 class NON: public Organism {  // A subclass for cells without organisms
@@ -168,6 +185,47 @@ class Phytoplankton: public Plankton {
 class NPlankton: public Organism {
         int age;
     public:
+        void move () {                  // The move function for NPlankton organisms with the ability to die.
+            int movement;
+            if ( where_x == 0 ) {
+                if (where_y == 0 || where_y == y) {
+                    movement = RandomInteger(4,6);
+                }
+                else {
+                    movement = RandomInteger(4,8);
+                }
+            }
+            else if (where_y == 0 || where_y == y) {
+                movement = RandomInteger(2,6);
+            }
+            else if ( where_x == x ) {
+                if (where_y == 0 || where_y == y) {
+                    movement = RandomInteger(2,4);
+                }
+                else {
+                    movement = RandomInteger(1,4);
+                }
+            }
+            else {
+                movement = RandomInteger(1,8);
+            }
+            // The move now:
+            if (movement == 1) { interaction( map[where_x-1][where_y-1]); }
+            else if (movement == 2) { interaction( map[where_x-1][where_y]); }
+            else if (movement == 3) { interaction( map[where_x-1][where_y+1]); }
+            else if (movement == 4) { interaction( map[where_x][where_y+1]); }
+            else if (movement == 5) { interaction( map[where_x+1][where_y+1]); }
+            else if (movement == 6) { interaction( map[where_x+1][where_y]); }
+            else if (movement == 7) { interaction( map[where_x+1][where_y-1]); }
+            else { interaction( map[where_x][where_y-1]); }
+            // Food size check now:
+            if (food=0) size--;       // Size reduced due to no food for 2 steps
+            else food--;
+            // Size check:
+            if (size==0) {
+                map[where_x][where_y] = &E;
+            }
+        }
 }
 
 class Invertebrate: public NPlankton {
@@ -264,11 +322,11 @@ class Shark: public Chordata {
 /* ========================= Declaration of the classes ends here =========================== */
 
 // Organism creator function:
-Organism * create_Organism (int digit) {
-    if (digit==0) { NON X; return &X; }   // just a abstract pointer for non-animal cell
-    else if (digit==1) { NON X; return &X; } 
-    else if (digit==2) { NON X; return &X; } 
-    else if (digit==3) { NON X; return &X; } 
+Organism & create_Organism (int digit) {
+    if (digit==0) { return &E; }   // just a abstract pointer for non-animal cell
+    else if (digit==1) { return &E; } 
+    else if (digit==2) { return &E; } 
+    else if (digit==3) { return &E; } 
     else if (digit==4) { Phytoplankton X; return &X; } /*****************************/
     else if (digit==5) { Phytoplankton X; return &X; } /*   Phytoplankton creation  */
     else if (digit==6) { Phytoplankton X; return &X; } /* The same times as "empty" */
@@ -293,6 +351,7 @@ Organism * create_Organism (int digit) {
 int main() {
     restart_label:      // This is the required label for the restart action
     srand((int)time(0));
+    NON E;  // Creating the empty object
     extern int x=RandomInteger(15,20);
     extern int y=RandomInteger(15,20);
     cout << "The map will have " << x << " length and" << y << " width" << endl;
@@ -345,11 +404,15 @@ int main() {
     cout << "Press S to make a step\nP to print the map\nA to add an organism or Infection\nR to restart\nI to get info\nAnything else to quit" << endl;
     cin >> choice;
     while (choice == 'S' || choice == 's') {
-        /* <-------Actions for one step. Call the move function of all organisms--------> Make sure to look for food and size (0 and they die) */
-        cout << "Press S to make a step\nP to print the map\nA to add an organism or Infection\nR to restart\nI to get info\nAnything else to quit" << endl;
-        // Yes you need to hit 's' evrytime, for every step. I need something like conio.h for *nix to implement a continuous loop.
-        cin >> choice;
+        for (int i=0;i=x;i++) {
+            for (int j=0; j=y; j++) {
+                map[i][j].move();           // Calling the move function of all the organisms to make a step  
+            }
+        }
         step_counter++;
+        cout << "Press S to make a step\nP to print the map\nA to add an organism or Infection\nR to restart\nI to get info\nAnything else to quit" << endl;
+        // Yes you have need to hit 's' everytime, for every step. I need something like conio.h for *nix to implement a continuous loop.
+        cin >> choice;
     }
     if (choice == 'R' || choice == 'r')
         goto restart_label;
@@ -389,54 +452,53 @@ int main() {
             cout << "Press the number of the collumn." << endl;
             int inf_y;
             cin >> inf_y;
-            NON W;                  // Create an empty object
             // Killing the near organisms:
             if ( inf_x == 0 ) {
                 if (inf_y == 0 || inf_y == y) {
-                    map[inf_x][inf_y] = &W;     // Give the pointer to that empty object
-                    map[inf_x+1][inf_y] = &W;   // For the near cells ( without getting out of limits)
-                    map[inf_x][inf_y+1] = &W;
-                    map[inf_x+1][inf_y+1] = &W;
+                    map[inf_x][inf_y] = &E;     // Give the pointer to that empty object
+                    map[inf_x+1][inf_y] = &E;   // For the near cells ( without getting out of limits)
+                    map[inf_x][inf_y+1] = &E;
+                    map[inf_x+1][inf_y+1] = &E;
                 }
                 else {
-                    map[inf_x][inf_y] = &W;
-                    map[inf_x+1][inf_y] = &W;
-                    map[inf_x][inf_y+1] = &W;
-                    map[inf_x+1][inf_y+1] = &W;
-                    map[inf_x][inf_y-1] = &W;
-                    map[inf_x+1][inf_y-1] = &W;
+                    map[inf_x][inf_y] = &E;
+                    map[inf_x+1][inf_y] = &E;
+                    map[inf_x][inf_y+1] = &E;
+                    map[inf_x+1][inf_y+1] = &E;
+                    map[inf_x][inf_y-1] = &E;
+                    map[inf_x+1][inf_y-1] = &E;
                 }
             }
             else if (inf_y == 0 || inf_y == y) {
-                map[inf_x][inf_y] = &W;
-                map[inf_x+1][inf_y] = &W;
-                map[inf_x][inf_y+1] = &W;
-                map[inf_x+1][inf_y+1] = &W;
-                map[inf_x-1][inf_y+1] = &W;
-                map[inf_x-1][inf_y] = &W;
+                map[inf_x][inf_y] = &E;
+                map[inf_x+1][inf_y] = &E;
+                map[inf_x][inf_y+1] = &E;
+                map[inf_x+1][inf_y+1] = &E;
+                map[inf_x-1][inf_y+1] = &E;
+                map[inf_x-1][inf_y] = &E;
             }
             else if ( inf_x == x ) {
                 if (inf_y == 0 || inf_y == y) {
-                    map[inf_x][inf_y+1] = &W;
-                    map[inf_x-1][inf_y+1] = &W;
-                    map[inf_x-1][inf_y] = &W;
+                    map[inf_x][inf_y+1] = &E;
+                    map[inf_x-1][inf_y+1] = &E;
+                    map[inf_x-1][inf_y] = &E;
                 }
                 else {
-                    map[inf_x][inf_y+1] = &W;
-                    map[inf_x-1][inf_y+1] = &W;
-                    map[inf_x-1][inf_y] = &W;
-                    map[inf_x-1][inf_y-1] = &W;
+                    map[inf_x][inf_y+1] = &E;
+                    map[inf_x-1][inf_y+1] = &E;
+                    map[inf_x-1][inf_y] = &E;
+                    map[inf_x-1][inf_y-1] = &E;
                 }
             else {
-                map[inf_x][inf_y] = &W;
-                map[inf_x+1][inf_y] = &W;
-                map[inf_x][inf_y+1] = &W;
-                map[inf_x-1][inf_y] = &W;
-                map[inf_x][inf_y-1] = &W;
-                map[inf_x+1][inf_y+1] = &W;
-                map[inf_x-1][inf_y-1] = &W;
-                map[inf_x+1][inf_y-1] = &W;
-                map[inf_x-1][inf_y+1] = &W;
+                map[inf_x][inf_y] = &E;
+                map[inf_x+1][inf_y] = &E;
+                map[inf_x][inf_y+1] = &E;
+                map[inf_x-1][inf_y] = &E;
+                map[inf_x][inf_y-1] = &E;
+                map[inf_x+1][inf_y+1] = &E;
+                map[inf_x-1][inf_y-1] = &E;
+                map[inf_x+1][inf_y-1] = &E;
+                map[inf_x-1][inf_y+1] = &E;
             }
         }
         else {
