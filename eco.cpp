@@ -34,8 +34,11 @@ class Organism {
         char alias;     // This is the alias for the map
         void interaction(Organism* k, Organism* l) {
             // This is the main interaction fucntion for stuff like eating and reproduction
-            if ( k.alias==l.alias ) {
-                //Reproduction. Call the create function --> which_Organism
+            if ( *k.alias==*l.alias ) {
+                if (*k.alias=='K') {
+                    Organism* L = create_Organism(11);
+                    
+                }
             }
         }
         void move ( Organism* m ) {
@@ -86,7 +89,7 @@ class Invertebrate: public NPlankton {
 class Vertebrate: public NPlankton {
     public:
 }
-// One Step Deeper --------------------- 
+// One Stsp Deeper --------------------- 
 class Mollusca: public Invertebrate {
     public:
 }
@@ -94,12 +97,12 @@ class Mollusca: public Invertebrate {
 class Arthropoda: public Invertebrate {
     public:
 }
-
+// This are the real organism classes:
 class Squid: public Mollusca {
     public:
         Squid() {
             char alias = 'K';
-            int age = RandomInteger(1,5);
+            int age = 1;
             int size = 2;
         }
 }
@@ -108,7 +111,7 @@ class Octopus: public Mollusca {
     public:
         Octopus() {
             char alias = 'T';
-            int age = RandomInteger(1,5);
+            int age = 1;
             int size = 3;
         }
 }
@@ -117,7 +120,7 @@ class Mylittus: public Mollusca {
     public:
         Mylittus() {
             char alias = 'M';
-            int age = RandomInteger(1,5);
+            int age = 1;
             int size = 2;
         }
 }
@@ -126,7 +129,7 @@ class Crab: public Arthropoda {
     public:
         Crab() {
             char alias = 'C';
-            int age = RandomInteger(1,5);
+            int age = 1;
             int size = 3;
         }
 }
@@ -135,7 +138,7 @@ class Shrimp: public Arthropoda {
     public:
         Shrimp() {
             char alias = 'G';
-            int age = RandomInteger(1,5);
+            int age = 1;
             int size = 2;
         }
 }
@@ -148,7 +151,7 @@ class Sprattus: public Chordata {
     public:
         Sprattus() {
             char alias = 'A';
-            int age = RandomInteger(1,5);
+            int age = 1;
             int size = 3;
         }
 }
@@ -157,7 +160,7 @@ class Dolpin: public Chordata {
     public:
         Dolpin() {
             char alias = 'D';
-            int age = RandomInteger(1,5);
+            int age = 1;
             int size = 4;
         }
 }
@@ -166,20 +169,35 @@ class Shark: public Chordata {
     public:
         Shark() {
             char alias = 'S';
-            int age = RandomInteger(1,5);
+            int age = 1;
             int size = 4;
         }
 }
 /* ========================= Declaration of the classes ends here =========================== */
 
-Organism* which_Organism (int digit) {
-    if (digit==0) return NON* X;   // just a abstract pointer for non-animal cell
-    else if (digit==1) return NON* X;
-    else if (digit==2) return NON* X;
-    else if (digit==3) return  
-    else if (digit==4) return 
-    else if (digit==5) return 
-    else if (digit==6) return 
+// Organism creator function:
+Organism * create_Organism (int digit) {
+    if (digit==0) { NON X; return &X; }   // just a abstract pointer for non-animal cell
+    else if (digit==1) { NON X; return &X; } 
+    else if (digit==2) { NON X; return &X; } 
+    else if (digit==3) { NON X; return &X; } 
+    else if (digit==4) { Phytoplankton X; return &X; } /*****************************/
+    else if (digit==5) { Phytoplankton X; return &X; } /*   Phytoplankton creation  */
+    else if (digit==6) { Phytoplankton X; return &X; } /* The same times as "empty" */
+    else if (digit==7) { Phytoplankton X; return &X; } /*****************************/
+    else if (digit==8) { Zooplankton X; return &X; } 
+    else if (digit==9) { Zooplankton X; return &X; }
+    else if (digit==10) { Zooplankton X; return &X; }
+    else if (digit==11) { Squid X; return &X; } 
+    else if (digit==12) { Squid X; return &X; }
+    else if (digit==13) { Mylittus X; return &X; } 
+    else if (digit==14) { Mylittus X; return &X; } 
+    else if (digit==15) { Shrimp X; return &X; } 
+    else if (digit==16) { Shrimp X; return &X; } 
+    else if (digit==17) { Shrimp X; return &X; } 
+    else if (digit==18) { Octopus X; return &X; } 
+    else if (digit==19) { Crab X; return &X; } 
+    else if (digit==20) { Sprattus X; return &X; } 
 }
 
 int main() {
@@ -195,43 +213,75 @@ int main() {
     int step_counter = 1;
     int org_counter = 0;
     cout << "Placing organisms into the map..." << endl;
-    for (int i = 0; i < x; i++) {
+    for (int i = 0; i <= x; i++) {
         vector<Organism*> row;    // Create an empty row
-        for (int j = 0; j < y; j++) {
+        for (int j = 0; j <= y; j++) {
                 int digit = RandomInteger(0,20);    // Generate a random digit for the organism creation 
-                row.push_back( which_Organism (digit); ); // Add an element to the row
+                Organism* Y = create_Organism (digit);
+                row.push_back( *Y ); // Add an element to the row
+                if ( digit >= 4 ) org_counter++;   // Add one to the organis counter if an organism is been added
         }
         map.push_back(row);       // Add the row to the main vector
-    /* org_counter++; */
     }
     // Placing a shark and a dolphin.
-    int place_x = RandomInteger(0,map.size());
-    int place_y = RandomInteger(0,map.size());
-    map[place_x][place_y] = Shark s;
-    place_x = RandomInteger(0,map.size());
-    place_y = RandomInteger(0,map.size());
-    map[place_x][place_y] = Dolpin d;
-    org_counter+=2;
+    bool flag=false;
+    while (flag==false) {
+        int place_x = RandomInteger(0,map.size());
+        int place_y = RandomInteger(0,map.size());
+        if (map[place_x][place_y].alias='O') {
+            Shark S;
+            map[place_x][place_y] = &S;
+            flag=true;
+            org_counter++;
+        }
+    }
+    flag=false;
+    while (flag==false) {
+        int place_x = RandomInteger(0,map.size());
+        int place_y = RandomInteger(0,map.size());
+        if (map[place_x][place_y].alias='O') {
+            Dolpin D;
+            map[place_x][place_y] = &D;
+            flag=true;
+            org_counter++;
+        }
+    }
     // Done. Starting menus and steps.
     char choice;
-    info_print_label:      // -------- This is the required label for the print and the info actions
-    cout << "Press S to make a step\nP to print the map\nR to restart\nI to get info\nAnything else to quit" << endl;
+    info_print_label:      // <-------- This is the required label for the print and the info actions
+    cout << "Press S to make a step\nP to print the map\nA to add an organism\nR to restart\nI to get info\nAnything else to quit" << endl;
     cin >> choice;
     while (choice == 'S' || choice == 's') {
         /* <-------Actions for one step. Call the move function of all organisms--------> */
-        cout << "Press S to make a step\nP to print the map\nR to restart\nI to get info\nAnything else to quit" << endl;
+        cout << "Press S to make a step\nP to print the map\nA to add an organism\nR to restart\nI to get info\nAnything else to quit" << endl;
+        // Yes you need to hit 's' evrytime, for every step. I need something like conio.h for *nix to implement a continuous loop.
         cin >> choice;
         step_counter++;
     }
     if (choice == 'R' || choice == 'r')
         goto restart_label;
     else if (choice == 'I' || choice == 'i') {
-        cout << "Press 1 to get general info or the character of the organism for specific" << endl;
-        // Give general and specific information Return to the main loop
+        // Give general and specific information
+        cout<< "There are " << org_counter << " total organisms in the map. "
+            << "The spesific organisms are:\n Phytoplankton - P\n Zooplankton - Z\n Squid - K\n Mylittus - M"
+            << "\n Shrimp - G\n Octopus - T\n Crab - C\n Sprattus - A\n Dolpin - D\n Shark - S" << endl;
+        goto info_print_label;
     }
     else if (choice == 'A' || choice == 'a') {
-        /* <---Add "Organism/Condition manipulation code" here ---> */
-        // Return to the main loop
+        // User organism creation loop:
+        cout << "Press the alias of the Organism you want to add" << endl;
+        char adding;
+        cin >> adding;
+        cout << "Press the number of the row you want the organism to be added" << endl;
+        int arow;
+        cin >> arow;
+        cout << "Now press the number of the collumn you want the organism to be added" << endl;
+        int acollumn;
+        cin >> acollumn;
+        Organism* Q = create_Organism (adding);
+        map[arow][acollumn] = *Q;
+        cout << "Success" << endl;
+        goto info_print_label;
     }
     else if (choice == 'P' || choice == 'p') {
         int i,j;
