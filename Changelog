@@ -1,3 +1,105 @@
+commit e6c40cb12a6296b6684777342fa017ae49ce52fd
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Mon Jan 16 14:08:17 2012 +0200
+
+    Rearranged classes and added age statistics
+
+commit cda7de6cf478d6d2c636dccec08016ddf36a0769
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Mon Jan 16 03:32:39 2012 +0200
+
+    how i want it - dynamic
+
+commit 42cc130b3d695ebe652ccec6cca71bb5a1246b8c
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Mon Jan 16 03:08:31 2012 +0200
+
+    Minor changes to the info option
+
+commit 6a416de430b73af9ad5c82e41f891f950ec62f21
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Mon Jan 16 02:52:34 2012 +0200
+
+    Split into two files and improved eating proccess.
+
+commit 1fbae798a77e8fb68dac898ef9bb035bc485423d
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sun Jan 15 23:11:30 2012 +0200
+
+    Finishing touches. Changed the place of functions
+    
+    and changed some scopes.
+    -Also added age code.
+
+commit 2018763d4461718169ced34da6a1667a335df074
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sun Jan 15 22:36:02 2012 +0200
+
+    Done with the eating/reproduction/movement
+    
+    -Added food and size stuff. When the food is 0, the size is reducing,
+    and when the size is 0 they DIE.
+    -Improved interaction and move.
+    -The Plankton CANNOT die to preserve food in the system.
+    -Also finished with the main step actions. Calling ALL the move().
+
+commit ddb54abfd0ac5b471e5ecbf6077902b03aed9194
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sun Jan 15 21:19:06 2012 +0200
+
+    Continuing the option. Done.
+    
+    -finished with the Info option.
+        Added counters (specific) and print them along with general info
+    -finished with the add option.
+        Improved the adding process,
+        added the "Infection" code
+    
+    Maybe there is THE NEED FOR >>*<<map[i][j] where I access the cells
+
+commit dcf383a376ac9f594c34480dfe6d33a79961683a
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sun Jan 15 18:28:58 2012 +0200
+
+    Improving menus and classes
+    
+    -Improving The Add option in the menu
+    -Implementing the interaction (for eating and reproduction)
+    -Implementing the move for all the cells
+    -Adding Shark and Dolphin in the create function so it can be used in
+        the adding and the reproduction options...
+    Now I have to make the actual movement
+
+commit a2cbd4927f660a17bf71ffb205d2bfa6bb7b6da2
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sun Jan 15 16:20:16 2012 +0200
+
+    Implementing the creator and the interaction
+    
+    -Also, the menus are all done, except the main "step" and the info,
+    in which I need to add more specific stuff
+    -Done with the creator function
+    -Starting to implement the eating the the interaction
+
+commit b6875f168222ec8fb5877d43f5ffca13f4aea854
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sat Jan 14 21:00:39 2012 +0200
+
+    I'm in the middle of creating the function of GOD
+    
+    Actually it is the which_Organism function to create organism objects
+    Also continued with the move and the interaction functions, and
+    created the NON-ORGANISM-OBJECT
+
+commit a8db245a8bfffa6620ea0872070ee87b8543739f
+Author: George Papanikolaou <g3orge.app@gmail.com>
+Date:   Sat Jan 14 17:58:50 2012 +0200
+
+    Getting started with the advanced map generation
+    
+    Using vectors to generate map - step 1 made.
+    Also created labels for the goto-s of the info/print loop
+
 commit d50b68d8a912b0c533d18553bd0ba62c33ece605
 Author: George Papanikolaou <g3orge.app@gmail.com>
 Date:   Sat Jan 14 17:22:58 2012 +0200
