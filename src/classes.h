@@ -8,20 +8,20 @@ class Organism {
         char alias;     // This is the alias for the map
         int org_eaten;  // The counter for the organisms eaten by this one
         int where_x, where_y;  // Their place in the map
-        void interaction(Organism l) {
+        void interaction(Organism* l) {
             // Plankton interaction
-            if (  alias==l.alias ) {   
+            if (  alias==*l.alias ) {   
                 if ( alias=='P') {
-                    Organism L = create_Organism(5);                // Creating a "child" organism
+                    Organism* L = create_Organism(5);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
                 else if ( alias=='Z') {
-                    Organism L = create_Organism(8);                // Creating a "child" organism
+                    Organism* L = create_Organism(8);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
             }
         }
@@ -93,96 +93,86 @@ class Phytoplankton: public Plankton {
 
 class NPlankton: public Organism {
     public:
-        void interaction(Organism l) {
+        void interaction(Organism* l) {
             // This is the main interaction function for stuff like eating and reproduction
-            if (  alias==l.alias ) {   
+            if (  alias==*l.alias ) {   
                 if ( alias=='P') {
-                    Organism L = create_Organism(5);                // Creating a "child" organism
+                    Organism* L = create_Organism(5);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
                 else if ( alias=='Z') {
-                    Organism L = create_Organism(8);                // Creating a "child" organism
+                    Organism* L = create_Organism(8);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
                 else if ( alias=='K') {
-                    Organism L = create_Organism(11);                // Creating a "child" organism
+                    Organism* L = create_Organism(11);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }       
                 else if ( alias=='M') {
-                    Organism L = create_Organism(13);                // Creating a "child" organism
+                    Organism* L = create_Organism(13);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
                 else if ( alias=='G') {
-                    Organism L = create_Organism(15);                // Creating a "child" organism
+                    Organism* L = create_Organism(15);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
                 else if ( alias=='T') {
-                    Organism L = create_Organism(18);                // Creating a "child" organism
+                    Organism* L = create_Organism(18);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
                 else if ( alias=='C') {
-                    Organism L = create_Organism(19);                // Creating a "child" organism
+                    Organism* L = create_Organism(19);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
                 else if ( alias=='A') {
-                    Organism L = create_Organism(20);                // Creating a "child" organism
+                    Organism* L = create_Organism(20);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
                 else if ( alias=='S') {
-                    Organism L = create_Organism(22);                // Creating a "child" organism
+                    Organism* L = create_Organism(22);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
                 else if ( alias=='D') {
-                    Organism L = create_Organism(21);                // Creating a "child" organism
+                    Organism* L = create_Organism(21);                // Creating a "child" organism
                     if (  where_x == x; ||  where_y == y )        // Adding the "child" in a near cell
-                        map[  where_x-1 ][  where_y-1 ] = L;
-                    map[  where_x+1 ][  where_y+1 ] = L;
+                        map[  where_x-1 ][  where_y-1 ] = *L;
+                    map[  where_x+1 ][  where_y+1 ] = *L;
                 }
             }
             else {
-                // The Eating Option: (Only to N-Plankton)
-                if (  size > l.size ) {
-                    map[l.where_x][l.where_y] = this  // This Object
-                    map[ where_x][ where_y] = E;      // The l organism is no more.
+                // The Eating Option:
+                if (  size > *l.size ) {
+                    map[*l.where_x][*l.where_y] = this  // This Object
+                    map[ where_x][ where_y] = &E;      // The *l organism is No More.
                     // Food code:
-                    if ( size-1==l.size ) {
-                        food = 3;                     // Size-depended growth and food. 
-                        size++;
-                    }
-                    else {
-                        food = 2;
-                    }
+                    food = 3;
+                    size++;
                     org_eaten++;
                 }
                 else {
-                    map[ where_x][ where_y] = l;
-                    map[l.where_x][l.where_y] = E;      // The organism is no more.
-                    if (l.size-1 == size) {
-                        l.food = 3;
-                        l.size++;
-                    }
-                    else {
-                        l.food=2;
-                    }
-                    l.org_eaten++;
+                    map[ where_x][ where_y] = *l;
+                    map[*l.where_x][*l.where_y] = &E;      // The  organism is No More.
+                    *l.food = 3;
+                    *l.size++;
+                    *l.org_eaten++;
                 }
             }
         }
@@ -224,7 +214,7 @@ class NPlankton: public Organism {
             else food--;
             // Size check:
             if (size==0) {
-                map[where_x][where_y] = E;      // Death.
+                map[where_x][where_y] = &E;      // Death.
                 dead_org++;
             }
             age++;
