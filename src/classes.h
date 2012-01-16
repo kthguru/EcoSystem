@@ -91,8 +91,6 @@ class Phytoplankton: public Plankton {
         }
 };
 
-/* <--- ^-Plankton ---- Non-Plankton-v ---> */
-
 class NPlankton: public Organism {
     public:
         void move () {                  // The move function for NPlankton organisms with the ability to die.
@@ -133,7 +131,8 @@ class NPlankton: public Organism {
             else food--;
             // Size check:
             if (size==0) {
-                map[where_x][where_y] = E;
+                map[where_x][where_y] = E;      // Death.
+                dead_org++;
             }
             age++;
         }
@@ -202,13 +201,13 @@ class NPlankton: public Organism {
                 }
             }
             else {
-                // The Eating Option:
+                // The Eating Option: (Only to N-Plankton)
                 if (  size > l.size ) {
                     map[l.where_x][l.where_y] = this  // This Object
-                    map[ where_x][ where_y] = E;      // The l organism is No More.
+                    map[ where_x][ where_y] = E;      // The l organism is no more.
                     // Food code:
                     if ( size-1==l.size ) {
-                        food = 3;                     // Size depended growth and food. 
+                        food = 3;                     // Size-depended growth and food. 
                         size++;
                     }
                     else {
@@ -218,7 +217,7 @@ class NPlankton: public Organism {
                 }
                 else {
                     map[ where_x][ where_y] = l;
-                    map[l.where_x][l.where_y] = E;      // The organism organism is No More.
+                    map[l.where_x][l.where_y] = E;      // The organism is no more.
                     if (l.size-1 == size) {
                         l.food = 3;
                         l.size++;

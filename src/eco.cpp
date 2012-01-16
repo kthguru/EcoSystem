@@ -66,6 +66,7 @@ int main() {
     // Counters:
     int step_counter = 1;
     int org_counter = 0;
+    int dead_org = 0;
     cout << "Placing organisms into the map..." << endl;
     for (int i = 0; i <= x; i++) {
         for (int j = 0; j <= y; j++) {
@@ -141,6 +142,7 @@ int main() {
             << "\n Mylittus(M) - "<< M_cn << "\n Shrimp(G) - " << G_cn << "\n Octopus(T) - "<< T_cn
             <<"\n Crab(C) - " << C_cn << "\n Sprattus(A) - " << A_cn << "\n Dolpin(D) - " << D_cn << "\n Shark(S) - " << S_cn << endl;
         cout << "System running for " << clock()/CLOCKS_PER_SEC << " seconds" << endl;
+        cout << "Total dead organisms: " << dead_org << endl;
         goto info_print_label;
     }
     else if (choice == 'A' || choice == 'a') {
