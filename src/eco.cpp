@@ -27,30 +27,30 @@ void wait(int seconds) {
 }
 
 // Organism creator function:
-Organism  create_Organism (int digit) {
-    if (digit==0) { return E; }   // just a abstract pointer for non-animal cell
-    else if (digit==1) { return E; } 
-    else if (digit==2) { return E; } 
-    else if (digit==3) { return E; } 
-    else if (digit==4) { Phytoplankton X; return X; } /*****************************/
-    else if (digit==5) { Phytoplankton X; return X; } /*   Phytoplankton creation  */
-    else if (digit==6) { Phytoplankton X; return X; } /* The same times as "empty" */
-    else if (digit==7) { Phytoplankton X; return X; } /*****************************/
-    else if (digit==8) { Zooplankton X; return X; } 
-    else if (digit==9) { Zooplankton X; return X; }
-    else if (digit==10) { Zooplankton X; return X; }
-    else if (digit==11) { Squid X; return X; } 
-    else if (digit==12) { Squid X; return X; }
-    else if (digit==13) { Mylittus X; return X; } 
-    else if (digit==14) { Mylittus X; return X; } 
-    else if (digit==15) { Shrimp X; return X; } 
-    else if (digit==16) { Shrimp X; return X; } 
-    else if (digit==17) { Shrimp X; return X; } 
-    else if (digit==18) { Octopus X; return X; } 
-    else if (digit==19) { Crab X; return X; } 
-    else if (digit==20) { Sprattus X; return X; } 
-    else if (digit==21) { Dolphin X; return X; }    // These are for the reproduction and the add option. NO RANDOM.
-    else if (digit==22) { Shark X; return X; } 
+Organism & create_Organism (int digit) {
+    if (digit==0) { return &E; }   // just a abstract pointer for non-animal cell
+    else if (digit==1) { return &E; } 
+    else if (digit==2) { return &E; } 
+    else if (digit==3) { return &E; } 
+    else if (digit==4) { Phytoplankton X; return &X; } /*****************************/
+    else if (digit==5) { Phytoplankton X; return &X; } /*   Phytoplankton creation  */
+    else if (digit==6) { Phytoplankton X; return &X; } /* The same times as "empty" */
+    else if (digit==7) { Phytoplankton X; return &X; } /*****************************/
+    else if (digit==8) { Zooplankton X; return &X; } 
+    else if (digit==9) { Zooplankton X; return &X; }
+    else if (digit==10) { Zooplankton X; return &X; }
+    else if (digit==11) { Squid X; return &X; } 
+    else if (digit==12) { Squid X; return &X; }
+    else if (digit==13) { Mylittus X; return &X; } 
+    else if (digit==14) { Mylittus X; return &X; } 
+    else if (digit==15) { Shrimp X; return &X; } 
+    else if (digit==16) { Shrimp X; return &X; } 
+    else if (digit==17) { Shrimp X; return &X; } 
+    else if (digit==18) { Octopus X; return &X; } 
+    else if (digit==19) { Crab X; return &X; } 
+    else if (digit==20) { Sprattus X; return &X; } 
+    else if (digit==21) { Dolphin X; return &X; }    // These are for the reproduction and the add option. NO RANDOM.
+    else if (digit==22) { Shark X; return &X; } 
 }
 
 int main() {
@@ -62,21 +62,22 @@ int main() {
     cout << "The map will have " << x << " length and" << y << " width" << endl;
     cout << "Generating the system!" << endl;
     wait(1);
-    Organism map;   // This is made with a static array
+    vector < vector<Organism*> > map;   // Trying to create a container for all the objects - The map
     // Counters:
     int step_counter = 1;
     int org_counter = 0;
-    int dead_org = 0;
     cout << "Placing organisms into the map..." << endl;
     for (int i = 0; i <= x; i++) {
+        vector<Organism*> row;    // Create an empty row
         for (int j = 0; j <= y; j++) {
                 int digit = RandomInteger(0,20);    // Generate a random digit for the organism creation 
-                Organism Y = create_Organism (digit);
-                Y.where_x=i;              // Add their place inside the placeholders
-                Y.where_y=j;
-                map[i][j] = Y
+                Organism* Y = create_Organism (digit);
+                *Y.where_x=i;        // Add their place inside the placeholders
+                *Y.where_y=j;
+                row.push_back( *Y ); // Add an element to the row
                 if ( digit >= 4 ) org_counter++;   // Add one to the organism counter if an organism is been added
         }
+        map.push_back(row);       // Add the row to the main vector
     }
     // Placing a shark and a dolphin.
     bool flag=false;
@@ -85,7 +86,7 @@ int main() {
         int place_y = RandomInteger(0,map.size());
         if (map[place_x][place_y].alias='O') {
             Shark S;
-            map[place_x][place_y] = S;
+            map[place_x][place_y] = &S;
             flag=true;
             org_counter++;
         }
@@ -96,7 +97,7 @@ int main() {
         int place_y = RandomInteger(0,map.size());
         if (map[place_x][place_y].alias='O') {
             Dolpin D;
-            map[place_x][place_y] = D;
+            map[place_x][place_y] = &D;
             flag=true;
             org_counter++;
         }
@@ -161,50 +162,50 @@ int main() {
             // Killing the near organisms:
             if ( inf_x == 0 ) {
                 if (inf_y == 0 || inf_y == y) {
-                    map[inf_x][inf_y] = E;     // Give the pointer to that empty object
-                    map[inf_x+1][inf_y] = E;   // For the near cells ( without getting out of limits)
-                    map[inf_x][inf_y+1] = E;
-                    map[inf_x+1][inf_y+1] = E;
+                    map[inf_x][inf_y] = &E;     // Give the pointer to that empty object
+                    map[inf_x+1][inf_y] = &E;   // For the near cells ( without getting out of limits)
+                    map[inf_x][inf_y+1] = &E;
+                    map[inf_x+1][inf_y+1] = &E;
                 }
                 else {
-                    map[inf_x][inf_y] = E;
-                    map[inf_x+1][inf_y] = E;
-                    map[inf_x][inf_y+1] = E;
-                    map[inf_x+1][inf_y+1] = E;
-                    map[inf_x][inf_y-1] = E;
-                    map[inf_x+1][inf_y-1] = E;
+                    map[inf_x][inf_y] = &E;
+                    map[inf_x+1][inf_y] = &E;
+                    map[inf_x][inf_y+1] = &E;
+                    map[inf_x+1][inf_y+1] = &E;
+                    map[inf_x][inf_y-1] = &E;
+                    map[inf_x+1][inf_y-1] = &E;
                 }
             }
             else if (inf_y == 0 || inf_y == y) {
-                map[inf_x][inf_y] = E;
-                map[inf_x+1][inf_y] = E;
-                map[inf_x][inf_y+1] = E;
-                map[inf_x+1][inf_y+1] = E;
-                map[inf_x-1][inf_y+1] = E;
-                map[inf_x-1][inf_y] = E;
+                map[inf_x][inf_y] = &E;
+                map[inf_x+1][inf_y] = &E;
+                map[inf_x][inf_y+1] = &E;
+                map[inf_x+1][inf_y+1] = &E;
+                map[inf_x-1][inf_y+1] = &E;
+                map[inf_x-1][inf_y] = &E;
             }
             else if ( inf_x == x ) {
                 if (inf_y == 0 || inf_y == y) {
-                    map[inf_x][inf_y+1] = E;
-                    map[inf_x-1][inf_y+1] = E;
-                    map[inf_x-1][inf_y] = E;
+                    map[inf_x][inf_y+1] = &E;
+                    map[inf_x-1][inf_y+1] = &E;
+                    map[inf_x-1][inf_y] = &E;
                 }
                 else {
-                    map[inf_x][inf_y+1] = E;
-                    map[inf_x-1][inf_y+1] = E;
-                    map[inf_x-1][inf_y] = E;
-                    map[inf_x-1][inf_y-1] = E;
+                    map[inf_x][inf_y+1] = &E;
+                    map[inf_x-1][inf_y+1] = &E;
+                    map[inf_x-1][inf_y] = &E;
+                    map[inf_x-1][inf_y-1] = &E;
                 }
             else {
-                map[inf_x][inf_y] = E;
-                map[inf_x+1][inf_y] = E;
-                map[inf_x][inf_y+1] = E;
-                map[inf_x-1][inf_y] = E;
-                map[inf_x][inf_y-1] = E;
-                map[inf_x+1][inf_y+1] = E;
-                map[inf_x-1][inf_y-1] = E;
-                map[inf_x+1][inf_y-1] = E;
-                map[inf_x-1][inf_y+1] = E;
+                map[inf_x][inf_y] = &E;
+                map[inf_x+1][inf_y] = &E;
+                map[inf_x][inf_y+1] = &E;
+                map[inf_x-1][inf_y] = &E;
+                map[inf_x][inf_y-1] = &E;
+                map[inf_x+1][inf_y+1] = &E;
+                map[inf_x-1][inf_y-1] = &E;
+                map[inf_x+1][inf_y-1] = &E;
+                map[inf_x-1][inf_y+1] = &E;
             }
         }
         else {
@@ -229,10 +230,10 @@ int main() {
                 cout << "There is no " << adding << " alias in the system" << endl;
                 goto info_print_label;
             }
-            Organism Q = create_Organism (c);
-            map[arow][acollumn] = Q;
-            Q.where_x = arow;
-            Q.where_y = acollumn;
+            Organism* Q = create_Organism (c);
+            map[arow][acollumn] = *Q;
+            *Q.where_x = arow;
+            *Q.where_y = acollumn;
             cout << "Success" << endl;
             goto info_print_label;
         }
