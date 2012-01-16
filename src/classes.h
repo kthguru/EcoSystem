@@ -93,49 +93,6 @@ class Phytoplankton: public Plankton {
 
 class NPlankton: public Organism {
     public:
-        void move () {                  // The move function for NPlankton organisms with the ability to die.
-            int movement;
-            if ( where_x == 0 ) {
-                if (where_y == 0 || where_y == y) {
-                    movement = RandomInteger(4,6);
-                }
-                else {
-                    movement = RandomInteger(4,8);
-                }
-            }
-            else if (where_y == 0 || where_y == y) {
-                movement = RandomInteger(2,6);
-            }
-            else if ( where_x == x ) {
-                if (where_y == 0 || where_y == y) {
-                    movement = RandomInteger(2,4);
-                }
-                else {
-                    movement = RandomInteger(1,4);
-                }
-            }
-            else {
-                movement = RandomInteger(1,8);
-            }
-            // The move now:
-            if (movement == 1) { interaction( map[where_x-1][where_y-1]); }
-            else if (movement == 2) { interaction( map[where_x-1][where_y]); }
-            else if (movement == 3) { interaction( map[where_x-1][where_y+1]); }
-            else if (movement == 4) { interaction( map[where_x][where_y+1]); }
-            else if (movement == 5) { interaction( map[where_x+1][where_y+1]); }
-            else if (movement == 6) { interaction( map[where_x+1][where_y]); }
-            else if (movement == 7) { interaction( map[where_x+1][where_y-1]); }
-            else { interaction( map[where_x][where_y-1]); }
-            // Food size check now:
-            if (food=0) size--;       // Size reduced due to no food for 2 steps
-            else food--;
-            // Size check:
-            if (size==0) {
-                map[where_x][where_y] = E;      // Death.
-                dead_org++;
-            }
-            age++;
-        }
         void interaction(Organism l) {
             // This is the main interaction function for stuff like eating and reproduction
             if (  alias==l.alias ) {   
@@ -228,6 +185,49 @@ class NPlankton: public Organism {
                     l.org_eaten++;
                 }
             }
+        }
+        void move () {                  // The move function for NPlankton organisms with the ability to die.
+            int movement;
+            if ( where_x == 0 ) {
+                if (where_y == 0 || where_y == y) {
+                    movement = RandomInteger(4,6);
+                }
+                else {
+                    movement = RandomInteger(4,8);
+                }
+            }
+            else if (where_y == 0 || where_y == y) {
+                movement = RandomInteger(2,6);
+            }
+            else if ( where_x == x ) {
+                if (where_y == 0 || where_y == y) {
+                    movement = RandomInteger(2,4);
+                }
+                else {
+                    movement = RandomInteger(1,4);
+                }
+            }
+            else {
+                movement = RandomInteger(1,8);
+            }
+            // The move now:
+            if (movement == 1) { interaction( map[where_x-1][where_y-1]); }
+            else if (movement == 2) { interaction( map[where_x-1][where_y]); }
+            else if (movement == 3) { interaction( map[where_x-1][where_y+1]); }
+            else if (movement == 4) { interaction( map[where_x][where_y+1]); }
+            else if (movement == 5) { interaction( map[where_x+1][where_y+1]); }
+            else if (movement == 6) { interaction( map[where_x+1][where_y]); }
+            else if (movement == 7) { interaction( map[where_x+1][where_y-1]); }
+            else { interaction( map[where_x][where_y-1]); }
+            // Food size check now:
+            if (food=0) size--;       // Size reduced due to no food for 2 steps
+            else food--;
+            // Size check:
+            if (size==0) {
+                map[where_x][where_y] = E;      // Death.
+                dead_org++;
+            }
+            age++;
         }
 }
 
