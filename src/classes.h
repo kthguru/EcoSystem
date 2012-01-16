@@ -69,6 +69,8 @@ class NON: public Organism {  // A subclass for cells without organisms
             char alias = 'O';
             int size = 0;
         }
+        void interaction(Organism* l) {}
+        void move () {}
 };
 
 class Plankton: public Organism {
