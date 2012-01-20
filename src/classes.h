@@ -297,7 +297,7 @@ class Sprattus: public Chordata {
         }
 }
 
-class Dolpin: public Chordata {
+class Dolphin: public Chordata {
     public:
         Dolpin() {
             char alias = 'D';

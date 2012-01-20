@@ -28,6 +28,7 @@ void wait(int seconds) {
 
 // Organism creator function:
 Organism & create_Organism (int digit) {
+    NON E;
     if (digit==0) { return &E; }   // just a abstract pointer for non-animal cell
     else if (digit==1) { return &E; } 
     else if (digit==2) { return &E; } 
@@ -96,7 +97,7 @@ int main() {
         int place_x = RandomInteger(0,map.size());
         int place_y = RandomInteger(0,map.size());
         if (map[place_x][place_y].alias='O') {
-            Dolpin D;
+            Dolphin D;
             map[place_x][place_y] = &D;
             flag=true;
             org_counter++;
@@ -178,7 +179,7 @@ int main() {
              << "\n Octopus(T) - "<< T_cn << "organisms with " << T_age/T_cn << " age average."
              << "\n Crab(C) - " << C_cn << "organisms with " << C_age/C_cn << " age average."
              << "\n Sprattus(A) - " << A_cn << "organisms with " << A_age/A_cn << " age average."
-             << "\n Dolpin(D) - " << D_cn << "organisms with " << D_age/D_cn << " age average."
+             << "\n Dolphin(D) - " << D_cn << "organisms with " << D_age/D_cn << " age average."
              << "\n Shark(S) - " << S_cn << "organisms with " << S_age/S_cn << " age average." << endl;
         cout << "\nTotal dead organisms: " << dead_org << endl;
         cout << "System running for " << clock()/CLOCKS_PER_SEC << " seconds" << endl;
@@ -286,7 +287,7 @@ int main() {
             }
             cout << "\b" << endl;   //Change the line in the stdout
         }
-        cout << "-------------------------------"
+        cout << "-------------------------------";
         goto info_print_label;
     }
     else { cout << "System quitting after " << clock()/CLOCKS_PER_SEC << " seconds" << endl; }
