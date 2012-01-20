@@ -1,4 +1,6 @@
 // This is the header file for the Ecosystem project
+Organism create_Organism (int digit);
+int RandomInteger(int low, int high);
 
 class Organism {
     public:

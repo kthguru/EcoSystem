@@ -12,6 +12,9 @@
 
 using namespace std;
 
+int RandomInteger(int low, int high);
+Organism create_Organism (int digit);
+
 int main() {
     restart_label:      // This is the required label for the restart action
     srand((int)time(0));
@@ -19,7 +22,7 @@ int main() {
     int x=RandomInteger(15,20);
     int y=RandomInteger(15,20);
     cout << "The map will have " << x << " length and" << y << " width" << endl;
-    N=x*y;
+    int N=x*y;
     cout << "Generating the system!" << endl;
     wait(1);
     Organism map[x][y];   // Trying to create a container for all the objects - The map
@@ -84,8 +87,8 @@ int main() {
         // Starting to count organisms:
         int P_cn=0, Z_cn=0, K_cn=0, M_cn=0, G_cn=0, T_cn=0, C_cn=0, A_cn=0, D_cn=0, S_cn=0;    // Counters
         int P_age=0, Z_age=0, K_age=0, M_age=0, G_age=0, T_age=0, C_age=0, A_age=0, D_age=0, S_age=0;    // Total age counters
-        for (i=0; i=x; i++) {
-            for (j=0; j=y; j++) {
+        for (int i=0; i=x; i++) {
+            for (int j=0; j=y; j++) {
                 // Maybe there is THE NEED FOR >>*<<map[i][j] down below here
                 if ( map[i][j].alias == 'P' ) {
                     P_cn++;
