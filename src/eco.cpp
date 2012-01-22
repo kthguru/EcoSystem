@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int RandomInteger(int low, int high);
+int RandomInteger(int low, int high); // Declaration
 Organism create_Organism (int digit);
 
 int main() {
