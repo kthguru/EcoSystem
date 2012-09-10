@@ -1,6 +1,6 @@
 // This is the first file of the C++ Project 'EcoSystem', that I'm working on.
 // This is the compiled file.
-// © George Papanikolaou 2011
+// George Papanikolaou 2011
 
 #include <iostream>
 #include <cstring>
